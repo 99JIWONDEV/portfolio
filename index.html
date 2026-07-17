@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jiwon Park — Developer</title>
+<meta name="description" content="Jiwon Park is a developer based in New Jersey. He builds web products with Next.js and TypeScript, and cares a lot about the people using them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --text: #191f28;
+    --sub: #4e5968;
+    --muted: #8b95a1;
+    --blue: #3182f6;
+    --blue-dark: #1b64da;
+    --blue-soft: #e8f3ff;
+    --bg: #ffffff;
+    --band: #f7f8fa;
+    --line: #eef0f3;
+    --shadow-sm: 0 2px 8px rgba(2, 32, 71, .04);
+    --shadow-md: 0 4px 14px rgba(2, 32, 71, .05), 0 12px 32px rgba(2, 32, 71, .07);
+    --shadow-lg: 0 8px 20px rgba(2, 32, 71, .06), 0 28px 60px rgba(2, 32, 71, .12);
+    --r: 24px;
+    --ease: cubic-bezier(.22, .68, .32, 1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--text); background: var(--bg); line-height: 1.62;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  ::selection { background: var(--blue-soft); color: var(--blue-dark); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ============ Nav ============ */
+  nav {
+    position: fixed; inset: 0 0 auto; z-index: 100;
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    background: rgba(255,255,255,.78);
+    transition: box-shadow .35s var(--ease);
+  }
+  nav.scrolled { box-shadow: 0 1px 0 var(--line), 0 8px 24px rgba(2,32,71,.05); }
+  .nav-inner { height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-weight: 800; font-size: 16.5px; letter-spacing: -.02em; text-decoration: none; color: var(--text); }
+  .logo b { color: var(--blue); }
+  .nav-links { display: flex; align-items: center; gap: 2px; }
+  .nav-links a {
+    text-decoration: none; color: var(--sub); font-size: 14px; font-weight: 600;
+    padding: 8px 13px; border-radius: 10px; transition: background .2s, color .2s;
+  }
+  .nav-links a:hover { background: var(--band); color: var(--text); }
+  .nav-cta {
+    margin-left: 10px; background: var(--blue); color: #fff !important;
+    padding: 9px 16px !important; border-radius: 12px;
+    transition: background .2s, transform .2s, box-shadow .2s !important;
+  }
+  .nav-cta:hover { background: var(--blue-dark) !important; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(49,130,246,.3); }
+
+  /* ============ Hero ============ */
+  .hero { position: relative; padding: 150px 0 100px; }
+  .hero-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+  .hero-bg::before, .hero-bg::after {
+    content: ''; position: absolute; border-radius: 50%; filter: blur(90px); opacity: .5;
+  }
+  .hero-bg::before { width: 560px; height: 560px; background: #e8f3ff; top: -180px; right: -120px; }
+  .hero-bg::after { width: 420px; height: 420px; background: #f0f6ff; bottom: -220px; left: -140px; }
+  .hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 72px; align-items: center; }
+  .hero h1 {
+    font-size: clamp(38px, 5.4vw, 58px); font-weight: 900;
+    letter-spacing: -.045em; line-height: 1.1; margin-bottom: 24px;
+  }
+  .hero-sub { font-size: clamp(16px, 1.8vw, 18.5px); color: var(--sub); max-width: 480px; margin-bottom: 36px; }
+  .hero-word { display: inline-block; opacity: 0; transform: translateY(26px); animation: rise .8s var(--ease) forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  .fade-late { opacity: 0; animation: fadeup .9s var(--ease) .5s forwards; }
+  @keyframes fadeup { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+    font-weight: 700; font-size: 15px; padding: 14px 24px; border-radius: 14px;
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .2s;
+  }
+  .btn-primary { background: var(--blue); color: #fff; box-shadow: 0 6px 16px rgba(49,130,246,.22); }
+  .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 14px 28px rgba(49,130,246,.32); }
+  .btn-ghost { background: #fff; color: var(--text); box-shadow: inset 0 0 0 1px var(--line), var(--shadow-sm); }
+  .btn-ghost:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 1px var(--line), var(--shadow-md); }
+  .photo-card {
+    width: min(360px, 82vw); border-radius: 30px; overflow: hidden;
+    box-shadow: var(--shadow-lg); justify-self: center;
+    transition: transform .6s var(--ease), box-shadow .6s var(--ease);
+  }
+  .photo-card:hover { transform: scale(1.02); box-shadow: 0 12px 28px rgba(2,32,71,.09), 0 40px 80px rgba(2,32,71,.16); }
+  .photo-card img { width: 100%; display: block; }
+
+  /* ============ Sections ============ */
+  section { padding: 104px 0; }
+  section.band { background: var(--band); }
+  .kicker { font-size: 14px; font-weight: 800; color: var(--blue); margin-bottom: 10px; }
+  h2 { font-size: clamp(27px, 3.6vw, 38px); font-weight: 800; letter-spacing: -.035em; line-height: 1.18; margin-bottom: 12px; }
+  .section-sub { color: var(--sub); font-size: 16.5px; max-width: 560px; margin-bottom: 52px; }
+
+  /* ============ Stats ============ */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .stat {
+    background: #fff; border-radius: var(--r); padding: 30px 26px;
+    box-shadow: var(--shadow-sm); transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+  }
+  .stat:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .stat .num { font-size: 34px; font-weight: 900; letter-spacing: -.04em; color: var(--blue); }
+  .stat .label { color: var(--sub); font-size: 14px; font-weight: 500; margin-top: 6px; line-height: 1.45; }
+
+  /* ============ Experience cards ============ */
+  .xp-card {
+    background: #fff; border-radius: 28px; overflow: hidden;
+    box-shadow: var(--shadow-md); margin-bottom: 28px;
+    transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+  }
+  .xp-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .xp-photo { position: relative; overflow: hidden; }
+  .xp-photo img { width: 100%; display: block; transition: transform .8s var(--ease); }
+  .xp-card:hover .xp-photo img { transform: scale(1.03); }
+  .xp-caption {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 34px 16px;
+    background: linear-gradient(transparent, rgba(10,16,26,.62));
+    color: #fff; font-size: 13px; font-weight: 600;
+  }
+  .xp-body { padding: 34px 38px 30px; }
+  .xp-top { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 6px; }
+  .xp-top h3 { font-size: 23px; font-weight: 800; letter-spacing: -.025em; }
+  .xp-role { color: var(--blue); font-weight: 700; font-size: 14.5px; }
+  .xp-date { font-size: 13px; font-weight: 600; color: var(--muted); margin-left: auto; }
+  .xp-intro { color: var(--sub); font-size: 15.5px; margin-bottom: 8px; }
+  .xp-work { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .xp-work h4 { font-size: 16px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 6px; }
+  .xp-work p { color: var(--sub); font-size: 14.5px; max-width: 860px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+  .chip { font-size: 12px; font-weight: 700; color: var(--sub); background: var(--band); padding: 5px 11px; border-radius: 100px; }
+  .xp-note { text-align: center; color: var(--muted); font-size: 14px; margin-top: 10px; }
+
+  /* ============ Skills ============ */
+  .skill-tabs { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 26px; }
+  .skill-tab {
+    font-family: inherit; font-size: 14px; font-weight: 700; color: var(--sub);
+    background: #fff; border: none; box-shadow: inset 0 0 0 1px var(--line);
+    padding: 10px 18px; border-radius: 100px; cursor: pointer;
+    transition: all .25s var(--ease);
+  }
+  .skill-tab:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 1px var(--line), var(--shadow-sm); }
+  .skill-tab.active { background: var(--text); color: #fff; box-shadow: 0 8px 20px rgba(25,31,40,.18); }
+  .skill-panel { background: #fff; border-radius: var(--r); padding: 34px 36px; box-shadow: var(--shadow-md); min-height: 120px; }
+  .skill-panel h3 { font-size: 19px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 8px; }
+  .skill-panel p { color: var(--sub); font-size: 15.5px; max-width: 720px; }
+  .skill-fade { animation: skillIn .45s var(--ease); }
+  @keyframes skillIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  /* ============ Projects ============ */
+  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .work-card {
+    background: #fff; border-radius: var(--r); overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+  }
+  .work-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .wc-visual { position: relative; overflow: hidden; }
+  .wc-visual img { width: 100%; display: block; transition: transform .7s var(--ease); }
+  .work-card:hover .wc-visual img { transform: scale(1.04); }
+  .wc-body { padding: 26px 30px 24px; }
+  .wc-tag { font-size: 12px; font-weight: 800; color: var(--blue); letter-spacing: .04em; text-transform: uppercase; }
+  .wc-body h3 { font-size: 21px; font-weight: 800; letter-spacing: -.025em; margin: 8px 0 6px; }
+  .wc-one { color: var(--sub); font-size: 15px; }
+  .wc-toggle {
+    margin-top: 18px; display: inline-flex; align-items: center; gap: 6px;
+    background: none; border: none; cursor: pointer; font-family: inherit;
+    font-size: 14px; font-weight: 700; color: var(--blue); padding: 4px 0;
+  }
+  .wc-toggle .arr { transition: transform .3s var(--ease); font-size: 12px; }
+  .work-card.open .wc-toggle .arr { transform: rotate(180deg); }
+  .wc-detail { max-height: 0; overflow: hidden; transition: max-height .55s var(--ease); }
+  .wc-detail-inner { padding: 18px 0 4px; border-top: 1px solid var(--line); margin-top: 18px; }
+  .wc-detail p { color: var(--sub); font-size: 14.5px; margin-bottom: 12px; }
+  .wc-detail p b { color: var(--text); font-weight: 700; }
+
+  /* ============ About ============ */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .about-card {
+    background: #fff; border-radius: var(--r); padding: 34px 36px; box-shadow: var(--shadow-sm);
+    transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+  }
+  .about-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .about-card .emoji { font-size: 26px; margin-bottom: 14px; display: block; }
+  .about-card h3 { font-size: 18px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 8px; }
+  .about-card p { color: var(--sub); font-size: 14.5px; }
+
+  /* ============ Footer ============ */
+  footer { padding: 130px 0 90px; text-align: center; }
+  footer h2 { font-size: clamp(32px, 5vw, 54px); letter-spacing: -.045em; }
+  footer .fsub { color: var(--sub); font-size: 16.5px; margin: 14px 0 34px; }
+  .email-btn {
+    display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    background: var(--text); color: #fff; font-weight: 800; font-size: 17px;
+    padding: 18px 34px; border-radius: 18px; letter-spacing: -.01em;
+    box-shadow: 0 12px 30px rgba(25,31,40,.22);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .email-btn:hover { transform: translateY(-3px); box-shadow: 0 20px 44px rgba(25,31,40,.3); }
+  .foot-links { display: flex; gap: 26px; justify-content: center; margin: 44px 0 22px; }
+  .foot-links a { color: var(--sub); text-decoration: none; font-weight: 700; font-size: 15px; transition: color .2s; }
+  .foot-links a:hover { color: var(--blue); }
+  .foot-meta { color: var(--muted); font-size: 13.5px; }
+
+  /* ============ Reveal ============ */
+  .reveal { opacity: 0; transform: translateY(34px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.visible { opacity: 1; transform: none; }
+  .d1 { transition-delay: .06s; } .d2 { transition-delay: .12s; } .d3 { transition-delay: .18s; }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .photo-card { order: -1; }
+    .nav-links a:not(.nav-cta) { display: none; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .work-grid, .about-grid { grid-template-columns: 1fr; }
+    .xp-body { padding: 26px 24px 24px; }
+    .xp-date { margin-left: 0; width: 100%; }
+    section { padding: 80px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#">Jiwon Park<b>.</b></a>
+    <div class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <h1 id="heroTitle">Hi, I'm Jiwon. I build web products people enjoy using.</h1>
+      <p class="hero-sub fade-late">I'm a developer based in New Jersey, working mostly in Next.js and TypeScript. Teams I've worked with would probably say my real strength is communication. I listen well, I explain clearly, and I care about the person on the other side of the screen.</p>
+      <div class="hero-actions fade-late">
+        <a class="btn btn-primary" href="#experience">See my experience</a>
+        <a class="btn btn-ghost" href="https://github.com/99JIWONDEV" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="photo-card fade-late"><img src="assets/profile.png" alt="Jiwon Park"></div>
+  </div>
+</header>
+
+<section class="band">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat reveal"><div class="num" data-count="9300">0</div><div class="label">people used a platform I helped build and maintain</div></div>
+      <div class="stat reveal d1"><div class="num" data-count="4">0</div><div class="label">teams I've been lucky to learn from</div></div>
+      <div class="stat reveal d2"><div class="num" data-count="500" data-suffix="+">0</div><div class="label">students took an assessment I worked on</div></div>
+      <div class="stat reveal d3"><div class="num" data-count="6" data-suffix="yrs">0</div><div class="label">of tutoring, which taught me how to explain things</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="kicker reveal">Experience</div>
+    <h2 class="reveal">The teams I've worked with.</h2>
+    <p class="section-sub reveal">Two internships and two full-time roles. Each one taught me something different about building software with other people.</p>
+
+    <!-- H Mart -->
+    <div class="xp-card reveal">
+      <div class="xp-body">
+        <div class="xp-top"><h3>H Mart</h3><span class="xp-role">TechOps, IT Support</span><span class="xp-date">Oct 2025 – Present</span></div>
+        <p class="xp-intro">H Mart is a Korean-American grocery chain with 88 stores and over 1,170 employees. I'm on the IT team, which means a lot of listening to problems and figuring out how to solve them for good.</p>
+        <div class="xp-work">
+          <h4>IT asset management platform</h4>
+          <p>Equipment records lived in scattered spreadsheets, so I proposed and built a platform that tracks location, repair history, and costs in one place, with a cost report dashboard for managers. I designed it so assets register as repairs happen, which meant no painful data migration for anyone. After an executive review it moved into a company-wide pilot with our 19-person IT team.</p>
+          <div class="chips"><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Spring Boot</span><span class="chip">MySQL</span><span class="chip">AWS EC2</span></div>
+        </div>
+        <div class="xp-work">
+          <h4>Store automation</h4>
+          <p>Our in-store food court queue systems broke every time Chrome updated. I wrote a Python script that detects the update and installs the matching ChromeDriver automatically, replacing a manual fix that used to happen store by store.</p>
+          <div class="chips"><span class="chip">Python</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- brand04 -->
+    <div class="xp-card reveal">
+      <div class="xp-photo">
+        <img src="assets/brand04.png" alt="Farewell letters from the brand04 team, and the dev team together">
+        <div class="xp-caption">The letters my teammates wrote when I left, and the dev team on my last week</div>
+      </div>
+      <div class="xp-body">
+        <div class="xp-top"><h3>brand04.solutions</h3><span class="xp-role">Frontend Developer</span><span class="xp-date">May – Aug 2025</span></div>
+        <p class="xp-intro">A small startup where everyone did a bit of everything. I shipped two public-facing projects here and learned what it means to support real users in real time.</p>
+        <div class="xp-work">
+          <h4>Dongjak 42 coupon event</h4>
+          <p>A coupon platform for a local commerce campaign run by Dongjak District, used by 9,300 residents. With that many users I didn't want to guess, so I used Storybook to check UI states and wrote Jest tests to make sure functions did what we intended. During maintenance I brought in react-virtualized to keep long lists smooth on slower phones. And because it was a startup, I also answered user calls during the live event, shared what I heard with the team, and we shipped fixes right away.</p>
+          <div class="chips"><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Tailwind</span><span class="chip">Jotai</span><span class="chip">Storybook</span><span class="chip">Jest</span></div>
+        </div>
+        <div class="xp-work">
+          <h4>Seongbuk-dong-gil taste test, with The Hyundai</h4>
+          <p>A popup event where visitors take a short taste test and get matched with neighborhood shops. I was the only frontend developer, building both the test experience and the admin results page. Working daily with the backend and design teams taught me how much smoother a project runs when questions get asked early.</p>
+          <div class="chips"><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Tailwind</span><span class="chip">Recoil</span><span class="chip">Storybook</span><span class="chip">Jest</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WithPlus -->
+    <div class="xp-card reveal">
+      <div class="xp-photo">
+        <img src="assets/withplus.png" alt="The WithPlus dev team and CEO, and the live content lineup including Live Hexagram">
+        <div class="xp-caption">The dev team and our CEO before I left, and Live Hexagram in the actual product lineup today</div>
+      </div>
+      <div class="xp-body">
+        <div class="xp-top"><h3>WithPlus</h3><span class="xp-role">Frontend Developer Intern</span><span class="xp-date">Jul – Aug 2024</span></div>
+        <p class="xp-intro">An edtech startup building live interactive content for classrooms. My internship project became a paid product that is still in service today, which I'm still a little proud of.</p>
+        <div class="xp-work">
+          <h4>Live Hexagram</h4>
+          <p>A personality assessment that sorts people into six types, sold as part of the WithPlus Live platform. I handled the design in Figma and built the frontend. Students download their results as a PDF, and teachers watch results come in on a real-time dashboard. It served about 500 students and 30 teachers across two schools, with around 100 people connected at once.</p>
+          <div class="chips"><span class="chip">Figma</span><span class="chip">HTML</span><span class="chip">CSS (MUI)</span><span class="chip">JavaScript</span></div>
+        </div>
+        <div class="xp-work">
+          <h4>Live Tap</h4>
+          <p>An educational game where students compete in real time, made to warm up a class before a lesson. I built the frontend prototype during my internship, and the finished version is now in service.</p>
+          <div class="chips"><span class="chip">HTML</span><span class="chip">CSS (MUI)</span><span class="chip">JavaScript</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PTKorea -->
+    <div class="xp-card reveal">
+      <div class="xp-photo">
+        <img src="assets/ptkorea.png" alt="The PTKorea team, and Jiwon presenting the ConnectOne dashboard">
+        <div class="xp-caption">My teammates on my last day, and presenting the ConnectOne dashboard prototype</div>
+      </div>
+      <div class="xp-body">
+        <div class="xp-top"><h3>PTKorea</h3><span class="xp-role">Frontend Assistant Intern, Digital Business Group</span><span class="xp-date">Jun – Dec 2023</span></div>
+        <p class="xp-intro">My first time working on software at a global scale, and my first time being the person who bridges two languages in a meeting room.</p>
+        <div class="xp-work">
+          <h4>Samsung global websites</h4>
+          <p>Operated and developed Samsung's global homepages across 80+ countries on Adobe Experience Manager, adapting each version to client requirements. My primary market was Samsung Japan. I also represented the team in global meetings held in English and translated the outcomes for my Korean colleagues.</p>
+          <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">AEM</span></div>
+        </div>
+        <div class="xp-work">
+          <h4>ConnectOne Workflow</h4>
+          <p>Joined the planning and prototyping of an all-in-one collaboration platform, with ticket tracking, project contract management, and a BI dashboard for team performance. I worked on the prototype frontend.</p>
+          <div class="chips"><span class="chip">HTML</span><span class="chip">SCSS</span><span class="chip">JavaScript</span></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="xp-note reveal">Before all of this, I served as a sergeant in the Republic of Korea Army artillery branch, 2020 to 2022.</p>
+  </div>
+</section>
+
+<section id="skills" class="band">
+  <div class="wrap">
+    <div class="kicker reveal">Skills</div>
+    <h2 class="reveal">What I work with.</h2>
+    <p class="section-sub reveal">I'm early in my career and still learning every week. These are the tools I've used enough to be useful with, and honest about.</p>
+    <div class="skill-tabs reveal">
+      <button class="skill-tab active" data-skill="react">React</button>
+      <button class="skill-tab" data-skill="next">Next.js</button>
+      <button class="skill-tab" data-skill="ts">TypeScript</button>
+      <button class="skill-tab" data-skill="js">JavaScript</button>
+      <button class="skill-tab" data-skill="story">Storybook</button>
+      <button class="skill-tab" data-skill="jest">Jest</button>
+      <button class="skill-tab" data-skill="git">Git</button>
+    </div>
+    <div class="skill-panel reveal" id="skillPanel">
+      <h3>React</h3>
+      <p>The tool I'm most at home with. I try to keep components small and reusable, and pull business logic into custom hooks so the UI stays clean. I've used Recoil and Jotai for global state, and I've learned the hard way that predictable data flow matters more than clever code.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="kicker reveal">Projects</div>
+    <h2 class="reveal">Built outside of work.</h2>
+    <p class="section-sub reveal">Two projects I keep coming back to when people ask what I've made. Tap one for the full story.</p>
+
+    <div class="work-grid">
+      <!-- BrainSnack -->
+      <div class="work-card reveal">
+        <div class="wc-visual"><img src="assets/brainsnack-cover.png" alt="BrainSnack service preview"></div>
+        <div class="wc-body">
+          <span class="wc-tag">goorm × Kakao Hackathon</span>
+          <h3>BrainSnack</h3>
+          <p class="wc-one">Aptitude test prep for job seekers. Practice by category, get your answers scored with explanations, and retry similar questions generated by ChatGPT.</p>
+          <button class="wc-toggle">Read the full story <span class="arr">▼</span></button>
+          <div class="wc-detail"><div class="wc-detail-inner">
+            <p><b>The team:</b> planners, a designer, two web developers, and two server developers, most of us meeting for the first time. I was one of the two on web.</p>
+            <p><b>The problem we hit:</b> the backend fell behind, and the deadline didn't care. Rather than wait, we agreed on the API interface early and I built against a mock with JSON Server. When the real API landed, we swapped it in and shipped on time.</p>
+            <p><b>What I took away:</b> conventions are kindness. ESLint, Prettier, and shared component patterns let strangers move fast without stepping on each other.</p>
+            <p>Built with React, TypeScript, TailwindCSS, and React Query.</p>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- Tomorrow Diary -->
+      <div class="work-card reveal d1">
+        <div class="wc-visual"><img src="assets/tomorrow-diary-cover.png" alt="Tomorrow Diary cover"></div>
+        <div class="wc-body">
+          <span class="wc-tag">Team project · Design + Frontend</span>
+          <h3>Tomorrow Diary</h3>
+          <p class="wc-one">A diary you write for tomorrow instead of today. Choose the feelings you expect, write ahead, and check back to see how it went.</p>
+          <button class="wc-toggle">Read the full story <span class="arr">▼</span></button>
+          <div class="wc-detail"><div class="wc-detail-inner">
+            <p><b>Wearing two hats:</b> we had no designer, so I opened Figma and made the design system myself. Defining the grid and colors before coding turned out to save time, not cost it.</p>
+            <p><b>Only frontend dev on the team:</b> I got to choose the stack, tried Recoil for global state for the first time, and deployed to Vercel. To make sure I really understood Recoil, I recorded a YouTube video explaining state management to others.</p>
+            <p><b>The unglamorous part:</b> this was a software engineering course project, so we wrote everything down. Requirements, UML models, UI specs, test plans and reports. I learned that a surprising amount of building software is writing documents, and I stopped resenting that.</p>
+            <p>Built with React, JavaScript, Recoil, and CSS.</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="band">
+  <div class="wrap">
+    <div class="kicker reveal">About</div>
+    <h2 class="reveal">A little more about me.</h2>
+    <p class="section-sub reveal">The parts that don't fit on a resume.</p>
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <span class="emoji">🌏</span>
+        <h3>Based in New Jersey</h3>
+        <p>Palisades Park, just across the river from Manhattan. I'm a U.S. Permanent Resident, bilingual in English and Korean, and comfortable being the bridge between the two.</p>
+      </div>
+      <div class="about-card reveal d1">
+        <span class="emoji">✍️</span>
+        <h3>I make knowledge easy to share</h3>
+        <p>I've always liked writing, from running a food blog to documenting things at work. When a team is missing an internal manual, I use AI to turn scattered know-how into clear docs fast, so information stops living in one person's head.</p>
+      </div>
+      <div class="about-card reveal">
+        <span class="emoji">📚</span>
+        <h3>Six years of tutoring</h3>
+        <p>I taught English to 14 students over six years, mostly for college entrance exams, and volunteered as a tutor for underprivileged students. Teaching is proof of something I value: if I know it, I can pass it on in a way that actually lands.</p>
+      </div>
+      <div class="about-card reveal d1">
+        <span class="emoji">🎓</span>
+        <h3>Both sides of the brain</h3>
+        <p>I double majored in Software Engineering and English Literature at Ajou University. The engineering side gives me structure and logic, and the humanities side helps me understand people and put ideas into words.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="kicker reveal">Contact</div>
+    <h2 class="reveal">Let's talk.</h2>
+    <p class="fsub reveal">Always happy to chat about frontend, products, or a good idea.</p>
+    <a class="email-btn reveal" href="mailto:99jiwonpark@gmail.com">99jiwonpark@gmail.com →</a>
+    <div class="foot-links reveal">
+      <a href="https://github.com/99JIWONDEV" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/jiwon-park-205a362b6/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="foot-meta reveal">© 2026 Jiwon Park</div>
+  </div>
+</footer>
+
+<script>
+  // Nav shadow
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 8), { passive: true });
+
+  // Hero word stagger
+  const h1 = document.getElementById('heroTitle');
+  h1.innerHTML = h1.textContent.split(' ').map((w, i) =>
+    `<span class="hero-word" style="animation-delay:${.05 + i * .045}s">${w}</span>`
+  ).join(' ');
+
+  // Scroll reveal
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  }), { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Count-up
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return; cio.unobserve(e.target);
+    const el = e.target, target = +el.dataset.count, suf = el.dataset.suffix || '', t0 = performance.now();
+    const tick = t => {
+      const p = Math.min((t - t0) / 1300, 1), ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * ease).toLocaleString() + suf;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }), { threshold: .5 });
+  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+  // Project accordions
+  document.querySelectorAll('.wc-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.work-card'), detail = card.querySelector('.wc-detail');
+      const open = card.classList.toggle('open');
+      detail.style.maxHeight = open ? detail.scrollHeight + 'px' : '0px';
+      btn.firstChild.textContent = open ? 'Show less ' : 'Read the full story ';
+    });
+  });
+
+  // Skills tabs
+  const skills = {
+    react: ['React', "The tool I'm most at home with. I try to keep components small and reusable, and pull business logic into custom hooks so the UI stays clean. I've used Recoil and Jotai for global state, and I've learned the hard way that predictable data flow matters more than clever code."],
+    next: ['Next.js', "My default for new projects. I've used SSR for faster first loads and better SEO, and with the App Router I try to be deliberate about what runs on the server and what runs on the client. Still plenty to learn here, and I enjoy that."],
+    ts: ['TypeScript', "I came to TypeScript through a project I built specifically to learn it, and it stuck. Interfaces, generics, and utility types have saved me from bugs I used to find at runtime. I'd rather fight the compiler for a minute than debug production for an hour."],
+    js: ['JavaScript', "The foundation under everything else. I'm comfortable with ES6+ and try not to reach for a library when the browser can already do the job. Async logic and DOM work in plain JavaScript don't scare me."],
+    story: ['Storybook', "I used Storybook on projects with thousands of real users, checking UI states before release instead of after. It also turned out to be the best communication tool we had with designers."],
+    jest: ['Jest', "I write unit tests where they earn their keep, especially around business logic that would be expensive to get wrong. On the Dongjak 42 project, tests were what let us ship fixes quickly without breaking things."],
+    git: ['Git', "Git-flow, tidy commit messages, readable history. I like code review as a conversation. Some of the most useful things I've learned came from a teammate's comment on my pull request."]
+  };
+  const panel = document.getElementById('skillPanel');
+  document.querySelectorAll('.skill-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.skill-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const [title, body] = skills[tab.dataset.skill];
+      panel.innerHTML = `<h3>${title}</h3><p>${body}</p>`;
+      panel.classList.remove('skill-fade'); void panel.offsetWidth; panel.classList.add('skill-fade');
+    });
+  });
+</script>
+</body>
+</html>
