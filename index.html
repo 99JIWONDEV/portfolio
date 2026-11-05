@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jiwon Park — Developer</title>
-<meta name="description" content="Jiwon Park is a developer based in New Jersey. He builds web products with Next.js and TypeScript, and cares a lot about the people using them.">
+<title>Jiwon Park — IT Support</title>
+<meta name="description" content="Jiwon Park is an IT support specialist in New Jersey. He handles Tier 1 support for 80+ stores and builds internal tools with React, Spring Boot, and Python.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -104,7 +104,7 @@
   .section-sub { color: var(--sub); font-size: 16.5px; max-width: 560px; margin-bottom: 52px; }
 
   /* ============ Stats ============ */
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
   .stat {
     background: #fff; border-radius: var(--r); padding: 30px 26px;
     box-shadow: var(--shadow-sm); transition: transform .35s var(--ease), box-shadow .35s var(--ease);
@@ -191,7 +191,9 @@
     transition: transform .35s var(--ease), box-shadow .35s var(--ease);
   }
   .about-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-  .about-card .emoji { font-size: 26px; margin-bottom: 14px; display: block; }
+  .about-card .icon-wrap { height: 44px; display: flex; align-items: center; margin-bottom: 14px; }
+  .about-card .icon { height: 32px; width: auto; display: block; }
+  .about-card .icon.badge { height: 44px; }
   .about-card h3 { font-size: 18px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 8px; }
   .about-card p { color: var(--sub); font-size: 14.5px; }
 
@@ -221,7 +223,7 @@
     .hero-grid { grid-template-columns: 1fr; gap: 48px; }
     .photo-card { order: -1; }
     .nav-links a:not(.nav-cta) { display: none; }
-    .stats { grid-template-columns: 1fr 1fr; }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .work-grid, .about-grid { grid-template-columns: 1fr; }
     .xp-body { padding: 26px 24px 24px; }
     .xp-date { margin-left: 0; width: 100%; }
@@ -248,8 +250,8 @@
   <div class="hero-bg"></div>
   <div class="wrap hero-grid">
     <div>
-      <h1 id="heroTitle">Hi, I'm Jiwon. I build web products people enjoy using.</h1>
-      <p class="hero-sub fade-late">I'm a developer based in New Jersey, working mostly in Next.js and TypeScript. Teams I've worked with would probably say my real strength is communication. I listen well, I explain clearly, and I care about the person on the other side of the screen.</p>
+      <h1 id="heroTitle">Hi, I'm Jiwon. I support store systems and build tools for the IT team.</h1>
+      <p class="hero-sub fade-late">I'm based in New Jersey and work on the TechOps team at Hana Cloud Solutions. I handle Tier 1 support across 80+ stores, and I build internal tools in React, Spring Boot, and Python. I work in English and Korean.</p>
       <div class="hero-actions fade-late">
         <a class="btn btn-primary" href="#experience">See my experience</a>
         <a class="btn btn-ghost" href="https://github.com/99JIWONDEV" target="_blank" rel="noopener">GitHub ↗</a>
@@ -262,10 +264,10 @@
 <section class="band">
   <div class="wrap">
     <div class="stats">
-      <div class="stat reveal"><div class="num" data-count="9300">0</div><div class="label">people used a platform I helped build and maintain</div></div>
-      <div class="stat reveal d1"><div class="num" data-count="4">0</div><div class="label">teams I've been lucky to learn from</div></div>
-      <div class="stat reveal d2"><div class="num" data-count="500" data-suffix="+">0</div><div class="label">students took an assessment I worked on</div></div>
-      <div class="stat reveal d3"><div class="num" data-count="6" data-suffix="yrs">0</div><div class="label">of tutoring, which taught me how to explain things</div></div>
+      <div class="stat reveal"><div class="num" data-count="700" data-suffix="+">0</div><div class="label">tickets closed for store and office staff</div></div>
+      <div class="stat reveal d1"><div class="num" data-count="80" data-suffix="+">0</div><div class="label">stores I support on site and remotely</div></div>
+      <div class="stat reveal d2"><div class="num" data-count="9300">0</div><div class="label">people used a product I built and maintained</div></div>
+      <div class="stat reveal d3"><div class="num" data-count="500" data-suffix="+">0</div><div class="label">students used a service I designed and built</div></div>
     </div>
   </div>
 </section>
@@ -273,23 +275,42 @@
 <section id="experience">
   <div class="wrap">
     <div class="kicker reveal">Experience</div>
-    <h2 class="reveal">The teams I've worked with.</h2>
-    <p class="section-sub reveal">Two internships and two full-time roles. Each one taught me something different about building software with other people.</p>
+    <h2 class="reveal">Where I've worked.</h2>
+    <p class="section-sub reveal">IT support across 80+ stores now, and frontend work before that.</p>
 
-    <!-- H Mart -->
+    <!-- Hana Cloud Solutions -->
     <div class="xp-card reveal">
       <div class="xp-body">
-        <div class="xp-top"><h3>H Mart</h3><span class="xp-role">TechOps, IT Support</span><span class="xp-date">Oct 2025 – Present</span></div>
-        <p class="xp-intro">H Mart is a Korean-American grocery chain with 88 stores and over 1,170 employees. I'm on the IT team, which means a lot of listening to problems and figuring out how to solve them for good.</p>
+        <div class="xp-top"><h3>Hana Cloud Solutions</h3><span class="xp-role">TechOps, IT Support</span><span class="xp-date">Oct 2025 – Present</span></div>
+        <p class="xp-intro">I support 80+ stores on the TechOps team. The day-to-day work is tickets, store visits, and the equipment those stores run. I also build tools the IT team uses.</p>
         <div class="xp-work">
-          <h4>IT asset management platform</h4>
-          <p>Equipment records lived in scattered spreadsheets, so I proposed and built a platform that tracks location, repair history, and costs in one place, with a cost report dashboard for managers. I designed it so assets register as repairs happen, which meant no painful data migration for anyone. After an executive review it moved into a company-wide pilot with our 19-person IT team.</p>
-          <div class="chips"><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Spring Boot</span><span class="chip">MySQL</span><span class="chip">AWS EC2</span></div>
+          <h4>Tier 1 support</h4>
+          <p>I close tickets in Freshdesk for store and office staff, 700+ since October 2025. The queue covers hardware, Windows and Office, network, accounts and access, and in-store equipment: Aislemaster, price checkers, and scales. I take a turn on the rotating on-call and pick up urgent requests in Slack.</p>
+          <div class="chips"><span class="chip">Freshdesk</span><span class="chip">Slack</span><span class="chip">Active Directory</span><span class="chip">Google Workspace</span></div>
         </div>
         <div class="xp-work">
-          <h4>Store automation</h4>
-          <p>Our in-store food court queue systems broke every time Chrome updated. I wrote a Python script that detects the update and installs the matching ChromeDriver automatically, replacing a manual fix that used to happen store by store.</p>
-          <div class="chips"><span class="chip">Python</span></div>
+          <h4>On-site and remote</h4>
+          <p>I travel to stores on my own for Tier 1 hardware problems on PCs, printers, and scanners. Other issues I handle remotely with Dameware and ScreenConnect, and I explain them to staff in Korean and English.</p>
+          <div class="chips"><span class="chip">Dameware</span><span class="chip">ScreenConnect</span></div>
+        </div>
+        <div class="xp-work">
+          <h4>Store scales</h4>
+          <p>I support in-store scales from setup through the problems stores report. I enter the initial scale data in CLWORKS PRO, and with the MD team I load each store's product (PLU) data through CLWORKS PRO and BORA. Typical calls are prices not showing, labels not printing, PLU errors, and new scales that will not connect.</p>
+          <div class="chips"><span class="chip">CLWORKS PRO</span><span class="chip">BORA</span></div>
+        </div>
+        <div class="xp-work">
+          <h4>Scale repair-cost platform</h4>
+          <p>I built a platform the IT team uses to track repair costs for store scales. It runs on React, Spring Boot, and MySQL on AWS EC2, and I keep improving it. When someone uploads a repair invoice, AI fills in the details. A Gmail integration is in progress.</p>
+          <div class="chips"><span class="chip">React</span><span class="chip">Spring Boot</span><span class="chip">MySQL</span><span class="chip">AWS EC2</span></div>
+        </div>
+        <div class="xp-work">
+          <h4>HBELL</h4>
+          <p>I maintain HBELL, the order-bell system used by in-store tenants, and built a voice-call version on Raspberry Pi and Python that is being deployed now. Devices are registered in Raspberry Pi Connect so we can maintain and troubleshoot them remotely.</p>
+          <div class="chips"><span class="chip">Raspberry Pi</span><span class="chip">Python</span></div>
+        </div>
+        <div class="xp-work">
+          <h4>HTV</h4>
+          <p>I own the HTV project. I build the devices, prepare them for store openings, and work with stores and IT teammates on field issues. I wrote the installation and troubleshooting manuals for HTV v1 and v2.</p>
         </div>
       </div>
     </div>
@@ -302,16 +323,16 @@
       </div>
       <div class="xp-body">
         <div class="xp-top"><h3>brand04.solutions</h3><span class="xp-role">Frontend Developer</span><span class="xp-date">May – Aug 2025</span></div>
-        <p class="xp-intro">A small startup where everyone did a bit of everything. I shipped two public-facing projects here and learned what it means to support real users in real time.</p>
+        <p class="xp-intro">A small startup where everyone did a bit of everything. I shipped two public projects and took user calls during a live event.</p>
         <div class="xp-work">
           <h4>Dongjak 42 coupon event</h4>
-          <p>A coupon platform for a local commerce campaign run by Dongjak District, used by 9,300 residents. With that many users I didn't want to guess, so I used Storybook to check UI states and wrote Jest tests to make sure functions did what we intended. During maintenance I brought in react-virtualized to keep long lists smooth on slower phones. And because it was a startup, I also answered user calls during the live event, shared what I heard with the team, and we shipped fixes right away.</p>
-          <div class="chips"><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Tailwind</span><span class="chip">Jotai</span><span class="chip">Storybook</span><span class="chip">Jest</span></div>
+          <p>I built and maintained the coupon platform for Dongjak District's local commerce revitalization campaign, "Dongjak 42," used by 9,300 residents. I took user calls during the live event and shipped fixes the same day.</p>
+          <div class="chips"><span class="chip">Next.js</span><span class="chip">TypeScript</span></div>
         </div>
         <div class="xp-work">
-          <h4>Seongbuk-dong-gil taste test, with The Hyundai</h4>
-          <p>A popup event where visitors take a short taste test and get matched with neighborhood shops. I was the only frontend developer, building both the test experience and the admin results page. Working daily with the backend and design teams taught me how much smoother a project runs when questions get asked early.</p>
-          <div class="chips"><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Tailwind</span><span class="chip">Recoil</span><span class="chip">Storybook</span><span class="chip">Jest</span></div>
+          <h4>Seongbuk-dong-gil popup, with The Hyundai</h4>
+          <p>I was the only frontend developer. Visitors take an interactive personality-type test and get matched with neighborhood shops. I also built the admin results page. We launched in two months with the backend and design teams.</p>
+          <div class="chips"><span class="chip">Next.js</span><span class="chip">TypeScript</span></div>
         </div>
       </div>
     </div>
@@ -324,16 +345,11 @@
       </div>
       <div class="xp-body">
         <div class="xp-top"><h3>WithPlus</h3><span class="xp-role">Frontend Developer Intern</span><span class="xp-date">Jul – Aug 2024</span></div>
-        <p class="xp-intro">An edtech startup building live interactive content for classrooms. My internship project became a paid product that is still in service today, which I'm still a little proud of.</p>
+        <p class="xp-intro">An edtech startup. I designed and built a paid personality assessment that is still in the lineup.</p>
         <div class="xp-work">
           <h4>Live Hexagram</h4>
-          <p>A personality assessment that sorts people into six types, sold as part of the WithPlus Live platform. I handled the design in Figma and built the frontend. Students download their results as a PDF, and teachers watch results come in on a real-time dashboard. It served about 500 students and 30 teachers across two schools, with around 100 people connected at once.</p>
-          <div class="chips"><span class="chip">Figma</span><span class="chip">HTML</span><span class="chip">CSS (MUI)</span><span class="chip">JavaScript</span></div>
-        </div>
-        <div class="xp-work">
-          <h4>Live Tap</h4>
-          <p>An educational game where students compete in real time, made to warm up a class before a lesson. I built the frontend prototype during my internship, and the finished version is now in service.</p>
-          <div class="chips"><span class="chip">HTML</span><span class="chip">CSS (MUI)</span><span class="chip">JavaScript</span></div>
+          <p>I designed it in Figma and built the frontend. It was used by 500+ students. I finished a month early, spent the extra time on maintenance, and closed sales with schools through live demos.</p>
+          <div class="chips"><span class="chip">Figma</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div>
         </div>
       </div>
     </div>
@@ -341,26 +357,21 @@
     <!-- PTKorea -->
     <div class="xp-card reveal">
       <div class="xp-photo">
-        <img src="assets/ptkorea.png" alt="The PTKorea team, and Jiwon presenting the ConnectOne dashboard">
-        <div class="xp-caption">My teammates on my last day, and presenting the ConnectOne dashboard prototype</div>
+        <img src="assets/ptkorea.png" alt="The PTKorea team, and Jiwon presenting a dashboard prototype">
+        <div class="xp-caption">The team on my last day, and a dashboard prototype I presented</div>
       </div>
       <div class="xp-body">
-        <div class="xp-top"><h3>PTKorea</h3><span class="xp-role">Frontend Assistant Intern, Digital Business Group</span><span class="xp-date">Jun – Dec 2023</span></div>
-        <p class="xp-intro">My first time working on software at a global scale, and my first time being the person who bridges two languages in a meeting room.</p>
+        <div class="xp-top"><h3>PTKorea</h3><span class="xp-role">Frontend Development Assistant Intern, Digital Business Group</span><span class="xp-date">Jun – Dec 2023</span></div>
+        <p class="xp-intro">My first software job. I operated Samsung's global websites and sat in English meetings for the Korean team.</p>
         <div class="xp-work">
           <h4>Samsung global websites</h4>
-          <p>Operated and developed Samsung's global homepages across 80+ countries on Adobe Experience Manager, adapting each version to client requirements. My primary market was Samsung Japan. I also represented the team in global meetings held in English and translated the outcomes for my Korean colleagues.</p>
+          <p>I operated Samsung's global websites across 80+ countries in Adobe Experience Manager. I worked with clients in each country to change and build pages to their requests. I represented the team in global English meetings and translated the outcomes for Korean colleagues.</p>
           <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">AEM</span></div>
-        </div>
-        <div class="xp-work">
-          <h4>ConnectOne Workflow</h4>
-          <p>Joined the planning and prototyping of an all-in-one collaboration platform, with ticket tracking, project contract management, and a BI dashboard for team performance. I worked on the prototype frontend.</p>
-          <div class="chips"><span class="chip">HTML</span><span class="chip">SCSS</span><span class="chip">JavaScript</span></div>
         </div>
       </div>
     </div>
 
-    <p class="xp-note reveal">Before all of this, I served as a sergeant in the Republic of Korea Army artillery branch, 2020 to 2022.</p>
+    <p class="xp-note reveal">Before all of this, I served as a sergeant in the Republic of Korea Army artillery branch, November 2020 to May 2022.</p>
   </div>
 </section>
 
@@ -368,19 +379,21 @@
   <div class="wrap">
     <div class="kicker reveal">Skills</div>
     <h2 class="reveal">What I work with.</h2>
-    <p class="section-sub reveal">I'm early in my career and still learning every week. These are the tools I've used enough to be useful with, and honest about.</p>
+    <p class="section-sub reveal">Tools I've used on real projects.</p>
     <div class="skill-tabs reveal">
-      <button class="skill-tab active" data-skill="react">React</button>
+      <button class="skill-tab active" data-skill="ops">IT support</button>
+      <button class="skill-tab" data-skill="react">React</button>
+      <button class="skill-tab" data-skill="python">Python</button>
+      <button class="skill-tab" data-skill="java">Java</button>
+      <button class="skill-tab" data-skill="spring">Spring Boot</button>
       <button class="skill-tab" data-skill="next">Next.js</button>
-      <button class="skill-tab" data-skill="ts">TypeScript</button>
-      <button class="skill-tab" data-skill="js">JavaScript</button>
-      <button class="skill-tab" data-skill="story">Storybook</button>
-      <button class="skill-tab" data-skill="jest">Jest</button>
+      <button class="skill-tab" data-skill="terraform">Terraform</button>
       <button class="skill-tab" data-skill="git">Git</button>
+      <button class="skill-tab" data-skill="ai">AI</button>
     </div>
     <div class="skill-panel reveal" id="skillPanel">
-      <h3>React</h3>
-      <p>The tool I'm most at home with. I try to keep components small and reusable, and pull business logic into custom hooks so the UI stays clean. I've used Recoil and Jotai for global state, and I've learned the hard way that predictable data flow matters more than clever code.</p>
+      <h3>IT support</h3>
+      <p>Day to day I work in Freshdesk, Slack, Dameware, and ScreenConnect. Store accounts run through Active Directory and Google Workspace. On site I handle PCs, printers, scanners, Aislemaster, price checkers, and scales.</p>
     </div>
   </div>
 </section>
@@ -389,22 +402,21 @@
   <div class="wrap">
     <div class="kicker reveal">Projects</div>
     <h2 class="reveal">Built outside of work.</h2>
-    <p class="section-sub reveal">Two projects I keep coming back to when people ask what I've made. Tap one for the full story.</p>
+    <p class="section-sub reveal">A hackathon project and a course project.</p>
 
     <div class="work-grid">
       <!-- BrainSnack -->
       <div class="work-card reveal">
         <div class="wc-visual"><img src="assets/brainsnack-cover.png" alt="BrainSnack service preview"></div>
         <div class="wc-body">
-          <span class="wc-tag">goorm × Kakao Hackathon</span>
+          <span class="wc-tag">goorm × Kakao Hackathon · Mar 2024</span>
           <h3>BrainSnack</h3>
-          <p class="wc-one">Aptitude test prep for job seekers. Practice by category, get your answers scored with explanations, and retry similar questions generated by ChatGPT.</p>
-          <button class="wc-toggle">Read the full story <span class="arr">▼</span></button>
+          <p class="wc-one">Aptitude-test practice for job seekers, with questions generated by ChatGPT. I built the frontend.</p>
+          <button class="wc-toggle">More detail <span class="arr">▼</span></button>
           <div class="wc-detail"><div class="wc-detail-inner">
-            <p><b>The team:</b> planners, a designer, two web developers, and two server developers, most of us meeting for the first time. I was one of the two on web.</p>
-            <p><b>The problem we hit:</b> the backend fell behind, and the deadline didn't care. Rather than wait, we agreed on the API interface early and I built against a mock with JSON Server. When the real API landed, we swapped it in and shipped on time.</p>
-            <p><b>What I took away:</b> conventions are kindness. ESLint, Prettier, and shared component patterns let strangers move fast without stepping on each other.</p>
-            <p>Built with React, TypeScript, TailwindCSS, and React Query.</p>
+            <p><b>The team:</b> planners, a designer, two web developers, and two server developers. I was one of the two on web.</p>
+            <p><b>What slipped:</b> the backend fell behind. We agreed on the API contract and I mocked it with JSON Server, then shipped on time when the real API was ready.</p>
+            <p>Built with React and TypeScript.</p>
           </div></div>
         </div>
       </div>
@@ -416,11 +428,11 @@
           <span class="wc-tag">Team project · Design + Frontend</span>
           <h3>Tomorrow Diary</h3>
           <p class="wc-one">A diary you write for tomorrow instead of today. Choose the feelings you expect, write ahead, and check back to see how it went.</p>
-          <button class="wc-toggle">Read the full story <span class="arr">▼</span></button>
+          <button class="wc-toggle">More detail <span class="arr">▼</span></button>
           <div class="wc-detail"><div class="wc-detail-inner">
-            <p><b>Wearing two hats:</b> we had no designer, so I opened Figma and made the design system myself. Defining the grid and colors before coding turned out to save time, not cost it.</p>
-            <p><b>Only frontend dev on the team:</b> I got to choose the stack, tried Recoil for global state for the first time, and deployed to Vercel. To make sure I really understood Recoil, I recorded a YouTube video explaining state management to others.</p>
-            <p><b>The unglamorous part:</b> this was a software engineering course project, so we wrote everything down. Requirements, UML models, UI specs, test plans and reports. I learned that a surprising amount of building software is writing documents, and I stopped resenting that.</p>
+            <p><b>Design:</b> we had no designer, so I made the design system in Figma. Setting the grid and colors first saved time once we started coding.</p>
+            <p><b>Frontend:</b> I was the only frontend developer, so I chose the stack, used Recoil for global state, and deployed to Vercel. I also recorded a YouTube video explaining Recoil state management.</p>
+            <p><b>Coursework:</b> it was a software engineering class, so we also wrote the requirements, UML, UI specs, and test plans.</p>
             <p>Built with React, JavaScript, Recoil, and CSS.</p>
           </div></div>
         </div>
@@ -433,27 +445,27 @@
   <div class="wrap">
     <div class="kicker reveal">About</div>
     <h2 class="reveal">A little more about me.</h2>
-    <p class="section-sub reveal">The parts that don't fit on a resume.</p>
+    <p class="section-sub reveal">Background next to the job list.</p>
     <div class="about-grid">
       <div class="about-card reveal">
-        <span class="emoji">🌏</span>
+        <span class="icon-wrap"><img class="icon" src="assets/icons/house.png" alt=""></span>
         <h3>Based in New Jersey</h3>
-        <p>Palisades Park, just across the river from Manhattan. I'm a U.S. Permanent Resident, bilingual in English and Korean, and comfortable being the bridge between the two.</p>
+        <p>Palisades Park, across the river from Manhattan. I'm a U.S. Permanent Resident and don't need visa sponsorship. I work in English and Korean.</p>
       </div>
       <div class="about-card reveal d1">
-        <span class="emoji">✍️</span>
-        <h3>I make knowledge easy to share</h3>
-        <p>I've always liked writing, from running a food blog to documenting things at work. When a team is missing an internal manual, I use AI to turn scattered know-how into clear docs fast, so information stops living in one person's head.</p>
+        <span class="icon-wrap"><img class="icon" src="assets/icons/writing.png" alt=""></span>
+        <h3>I write the manuals</h3>
+        <p>I write manuals wherever I work. At Hana Cloud Solutions I've written a range of installation and troubleshooting manuals, including HTV v1 and v2, and I wrote manuals at PTKorea too. That way a setup or a fix is not stuck with one person.</p>
       </div>
       <div class="about-card reveal">
-        <span class="emoji">📚</span>
-        <h3>Six years of tutoring</h3>
-        <p>I taught English to 14 students over six years, mostly for college entrance exams, and volunteered as a tutor for underprivileged students. Teaching is proof of something I value: if I know it, I can pass it on in a way that actually lands.</p>
+        <span class="icon-wrap"><img class="icon badge" src="assets/icons/terraform-associate.png" alt="HashiCorp Certified: Terraform Associate badge"></span>
+        <h3>Terraform Associate</h3>
+        <p>HashiCorp Certified: Terraform Associate (004), October 2026.</p>
       </div>
       <div class="about-card reveal d1">
-        <span class="emoji">🎓</span>
-        <h3>Both sides of the brain</h3>
-        <p>I double majored in Software Engineering and English Literature at Ajou University. The engineering side gives me structure and logic, and the humanities side helps me understand people and put ideas into words.</p>
+        <span class="icon-wrap"><img class="icon" src="assets/icons/graduation-cap.png" alt=""></span>
+        <h3>Ajou University</h3>
+        <p>B.S. in Software and Computer Engineering, and B.A. in English Language and Literature. March 2018 to July 2025.</p>
       </div>
     </div>
   </div>
@@ -463,9 +475,10 @@
   <div class="wrap">
     <div class="kicker reveal">Contact</div>
     <h2 class="reveal">Let's talk.</h2>
-    <p class="fsub reveal">Always happy to chat about frontend, products, or a good idea.</p>
+    <p class="fsub reveal">Email or call about an IT support role, a DevOps role, or a project.</p>
     <a class="email-btn reveal" href="mailto:99jiwonpark@gmail.com">99jiwonpark@gmail.com →</a>
     <div class="foot-links reveal">
+      <a href="tel:+12012335320">+1-201-233-5320</a>
       <a href="https://github.com/99JIWONDEV" target="_blank" rel="noopener">GitHub</a>
       <a href="https://www.linkedin.com/in/jiwon-park-205a362b6/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
@@ -509,19 +522,21 @@
       const card = btn.closest('.work-card'), detail = card.querySelector('.wc-detail');
       const open = card.classList.toggle('open');
       detail.style.maxHeight = open ? detail.scrollHeight + 'px' : '0px';
-      btn.firstChild.textContent = open ? 'Show less ' : 'Read the full story ';
+      btn.firstChild.textContent = open ? 'Show less ' : 'More detail ';
     });
   });
 
   // Skills tabs
   const skills = {
-    react: ['React', "The tool I'm most at home with. I try to keep components small and reusable, and pull business logic into custom hooks so the UI stays clean. I've used Recoil and Jotai for global state, and I've learned the hard way that predictable data flow matters more than clever code."],
-    next: ['Next.js', "My default for new projects. I've used SSR for faster first loads and better SEO, and with the App Router I try to be deliberate about what runs on the server and what runs on the client. Still plenty to learn here, and I enjoy that."],
-    ts: ['TypeScript', "I came to TypeScript through a project I built specifically to learn it, and it stuck. Interfaces, generics, and utility types have saved me from bugs I used to find at runtime. I'd rather fight the compiler for a minute than debug production for an hour."],
-    js: ['JavaScript', "The foundation under everything else. I'm comfortable with ES6+ and try not to reach for a library when the browser can already do the job. Async logic and DOM work in plain JavaScript don't scare me."],
-    story: ['Storybook', "I used Storybook on projects with thousands of real users, checking UI states before release instead of after. It also turned out to be the best communication tool we had with designers."],
-    jest: ['Jest', "I write unit tests where they earn their keep, especially around business logic that would be expensive to get wrong. On the Dongjak 42 project, tests were what let us ship fixes quickly without breaking things."],
-    git: ['Git', "Git-flow, tidy commit messages, readable history. I like code review as a conversation. Some of the most useful things I've learned came from a teammate's comment on my pull request."]
+    ops: ['IT support', 'Day to day I work in Freshdesk, Slack, Dameware, and ScreenConnect. Store accounts run through Active Directory and Google Workspace. On site I handle PCs, printers, scanners, Aislemaster, price checkers, and scales.'],
+    react: ['React', 'I built the scale repair-cost platform in React. The IT team uses it now, and I keep adding to it, including invoice upload and a Gmail integration that is still in progress.'],
+    python: ['Python', 'I built the HBELL voice-call version in Python on a Raspberry Pi. Devices are registered in Raspberry Pi Connect for remote maintenance and troubleshooting. That version is being deployed now.'],
+    java: ['Java', 'I write Java for the Spring Boot API behind the scale repair-cost platform.'],
+    spring: ['Spring Boot', 'The repair-cost platform API is Spring Boot, with MySQL on AWS EC2. That is where repair costs for store scales are tracked.'],
+    next: ['Next.js', 'At brand04 I shipped two public sites on Next.js and TypeScript: a coupon platform used by 9,300 residents, and a popup personality test with an admin results page.'],
+    terraform: ['Terraform', 'I passed the HashiCorp Certified: Terraform Associate (004) exam in October 2026.'],
+    git: ['Git', 'I use Git on the internal tools and on the frontend projects.'],
+    ai: ['AI and automation', 'I use Claude for AI-assisted development and prompt design. In the repair-cost platform, AI reads uploaded repair invoices and fills in the details.']
   };
   const panel = document.getElementById('skillPanel');
   document.querySelectorAll('.skill-tab').forEach(tab => {
